@@ -1,0 +1,35 @@
+// 핀 번호 설정
+int redPin = 9;
+int greenPin = 10;
+int bluePin = 11;
+int buttonPin = 4;
+int potPin = A0;
+//mode: 현재 제어 중인 색상을 나타내는 변수
+int mode = 0; // mode = 0 (Red), 1(Green), 2(Blue)
+int previousState = HIGH; // 버튼의 마지막 상태를 저장
+void setup() {
+pinMode(buttonPin, INPUT_PULLUP); //아두이노 내부 풀업 저항 사용
+}
+
+void loop() {
+int currentState = digitalRead(buttonPin); // 현재 버튼 상태 읽기
+// 버튼 핀 읽어서 모드 바꾸기
+if(currentState == LOW && previousState == HIGH){ // 버튼이 눌린 상태로 바뀌면
+mode = mode + 1; //RGB 모드 바꾸기
+if(mode > 2){
+mode = 0;
+}
+Serial.println(mode);
+}
+previousState = currentState; // 현재 버튼 상태를 마지막 상태로 업데이트
+int potValue = analogRead(potPin); //포텐셔미터 읽기 (10 bits, 0 ~ 1023)
+if(mode == 0){ // mode에 따른 RGB LED 색 변화
+analogWrite(redPin, map(potValue, 0, 1023, 0, 255)); //analogWrite 함수는 0~255 값 출력
+}
+else if(mode == 1){
+analogWrite(greenPin, map(potValue, 0, 1023, 0, 255));
+}
+else{
+analogWrite(bluePin, map(potValue, 0, 1023, 0, 255));
+}
+}
