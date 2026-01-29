@@ -1,0 +1,12 @@
+void setup() {
+Serial.begin(9600);
+pinMode(3, OUTPUT);
+}
+// the loop function runs over and over again forever
+void loop() {
+int sensorValue = analogRead(A0); // 0~1023 사이의 값
+int value = map(sensorValue, 0, 1023, 0, 255); //0~255 사이의 값으로 mapping
+Serial.println(value);
+analogWrite(3, value);
+delay(100);
+}
