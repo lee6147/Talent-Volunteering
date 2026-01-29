@@ -2,13 +2,4 @@
 
 
 
-void setup() {
-// initialize digital pin LED_BUILTIN as an output.
-pinMode(2, OUTPUT);
-}
-void loop() {
-digitalWrite(2, HIGH); // turn the LED on (HIGH is the voltage level)
-delay(1000); // wait for a second
-digitalWrite(2, LOW); // turn the LED off by making the voltage LOW
-delay(1000); // wait for a second
-}
+<img width="553" height="252" alt="스크린샷 2026-01-29 123854" src="https://github.com/user-attachments/assets/d0b123d4-d68f-40e3-bee5-a30c0bd14ae9" />
